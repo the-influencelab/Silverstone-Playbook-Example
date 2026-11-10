@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Silverstone People Development Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: one scrolling playbook. Pale mint and warm cream bands alternate, deep circuit blue for type,
+   The Influence Lab forest green, mint, yellow and pink lead; Silverstone blue and racing red mark their facts.
+   Taped notes carry the single line takeaways. Single light look by choice. */
+:root{
+  color-scheme:light;
+  --forest:#1E4A1A;    /* The Influence Lab forest green: headings and bands */
+  --pink:#ED93B1;      /* The Influence Lab pink: markers */
+  --navy:#12284C;      /* Silverstone circuit blue: their facts and labels */
+  --red:#D0202E;       /* racing red: the one accent */
+  --mint:#6ECFB0;      /* Influence Lab mint */
+  --pale:#DDF3EA;      /* Influence Lab pale mint band */
+  --cream:#FBF6EC;     /* warm page ground */
+  --card:#FFFDF8;      /* warm card surface */
+  --ink:#22301F;
+  --soft:#566259;
+  --line:#D6E4DA;
+  --yellow:#FFE600;
+  --py:#FFF3A0;--pp:#F9D3E0;--pm:#CDEFE2;--pb:#D9E2F1;
+  --note-ink:#2a2a2a;--note-label:#4a4a2a;
+  --on-navy:#FFFFFF;--on-navy-soft:#E3F3EA;
+  --foot:#12300F;--foot-ink:#B9D8C4;
+  --wot-a:#FBE1E3;--wot-b:#DDF5EC;--wot-c:#E3E9F4;
+  --display:'Lora',Georgia,'Times New Roman',serif;
+  --body:'Poppins','Segoe UI',Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);font-weight:300;color:var(--ink);background:var(--cream);line-height:1.65;font-size:17px}
+a{color:var(--forest)}
+a:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:901px){.wrap{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}}
+section{padding-block:88px;position:relative}
+section.alt{background:var(--pale)}
+.k{font-size:13px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--forest);display:flex;align-items:center;gap:12px}
+.k::before{content:"";width:28px;height:3px;background:var(--pink);display:inline-block;flex:none}
+h1,h2,h3,h4{font-family:var(--display);font-weight:500;color:var(--forest);line-height:1.18;text-wrap:balance}
+h2{font-size:clamp(30px,4vw,44px);margin:14px 0 20px;max-width:880px}
+h3{font-size:22px;margin-bottom:8px}
+.lead{font-size:20px;max-width:860px}
+p+p{margin-top:12px}
+b,strong{font-weight:500}
+
+/* taped notes */
+.pi{position:relative;padding:26px 24px 24px;font-family:var(--display);font-style:italic;font-size:18px;line-height:1.45;color:var(--note-ink);
+  box-shadow:0 12px 24px rgba(18,40,76,.12),0 2px 4px rgba(18,40,76,.08)}
+.pi b{display:block;font-family:var(--body);font-style:normal;font-weight:600;font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;color:var(--note-label)}
+.pi::before{content:"";position:absolute;top:-11px;left:50%;width:84px;height:22px;margin-left:-42px;background:rgba(255,255,255,.65);transform:rotate(-3deg)}
+.y{background:var(--py)}.p{background:var(--pp)}.m{background:var(--pm)}.b{background:var(--pb)}
+.r1{transform:rotate(-2.5deg)}.r2{transform:rotate(2deg)}.r3{transform:rotate(-1.2deg)}.r4{transform:rotate(3deg)}
+
+/* hero */
+.hero{background:var(--pale);padding-block:0;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.35fr 1fr;gap:48px;align-items:center;padding-top:76px;padding-bottom:76px}
+.hero h1{font-size:clamp(38px,5.2vw,62px);margin:18px 0 22px}
+.hero .sub{font-size:20px;color:var(--soft);max-width:620px}
+.partner{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
+.partner span{font-size:13px;font-weight:500;letter-spacing:.06em;padding:8px 14px;border:1px solid rgba(18,40,76,.35)}
+.partner span.c{background:var(--navy);border-color:var(--navy);color:var(--on-navy)}
+.me{margin-top:36px;font-size:18px}
+.me small{display:block;color:var(--soft);font-size:15px}
+.photo{position:relative;justify-self:center}
+.photo .ring{width:340px;height:340px;max-width:100%;border-radius:50%;border:4px solid var(--mint);padding:12px}
+.photo img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.photo .pi{position:absolute;width:210px;font-size:16px;right:-30px;bottom:-30px}
+/* start line: the one motorsport detail */
+.grid-line{height:14px;background:repeating-conic-gradient(var(--navy) 0 25%,var(--cream) 0 50%) 0 0/14px 14px}
+/* The Influence Lab brand bar */
+.brand{background:var(--forest);color:var(--on-navy)}
+.brand .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;justify-content:space-between;padding-block:14px}
+.mark{display:flex;align-items:center;gap:12px;font-family:var(--display);font-size:21px;font-weight:500;letter-spacing:.01em;color:var(--on-navy)}
+.mark i{display:inline-flex;gap:4px}
+.mark i span{width:10px;height:10px;border-radius:50%;display:block}
+.mark i span:nth-child(1){background:var(--mint)}.mark i span:nth-child(2){background:var(--yellow)}.mark i span:nth-child(3){background:var(--pink)}
+.brand small{font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--on-navy-soft)}
+.close .mark{justify-content:center;margin-top:34px}
+.typ{margin-top:26px;background:var(--py);padding:18px 22px;font-size:16px;max-width:860px;border-left:5px solid var(--yellow)}
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+.how div{background:var(--card);padding:24px 22px;border-bottom:4px solid var(--mint)}
+.how div:nth-child(2){border-color:var(--pink)}.how div:nth-child(3){border-color:var(--yellow)}.how div:nth-child(4){border-color:var(--forest)}
+.how h3{font-size:20px}.how p{font-size:15px;line-height:1.55}
+
+.scen{display:grid;grid-template-columns:1.5fr 1fr;gap:56px;align-items:start}
+.scen .box{background:var(--card);border-left:5px solid var(--pink);padding:30px 34px;font-size:19px}
+.notes{display:grid;gap:34px;padding-top:14px}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin:36px 0 40px}
+.stat{background:var(--card);padding:24px;border-top:4px solid var(--navy)}
+.stat b{display:block;font-family:var(--display);font-size:42px;font-weight:500;color:var(--navy);line-height:1;font-variant-numeric:tabular-nums}
+.stat span{display:block;font-size:15px;color:var(--soft);margin-top:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.two>*,.scen>*,.col>*{min-width:0}
+ul.d{list-style:none}
+ul.d li{position:relative;padding-left:24px;margin-bottom:10px}
+ul.d li::before{content:"";position:absolute;left:0;top:11px;width:10px;height:10px;border-radius:50%;background:var(--mint)}
+
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px 28px;margin-top:44px}
+.pgrid .pi{font-size:17px}
+
+.sits{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:28px}
+.sits div{background:var(--card);padding:22px 20px;border:1px solid var(--line)}
+.sits span{display:inline-flex;width:30px;height:30px;border-radius:50%;background:var(--forest);color:var(--on-navy);font-weight:600;font-size:14px;align-items:center;justify-content:center;margin-bottom:10px}
+.sits h4{font-size:18px;margin-bottom:6px}
+.sits p{font-size:14.5px;line-height:1.55}
+.why{margin-top:40px;background:var(--forest);color:var(--on-navy);padding:32px 38px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.why h3{color:var(--yellow);margin:0}
+.why p{color:var(--on-navy-soft)}
+
+/* priorities */
+.prio{margin-top:46px;display:grid;gap:26px}
+.pr{background:var(--card);border-top:5px solid var(--forest);padding:32px 34px}
+.pr .t{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
+.pr h3{font-size:26px;margin:6px 0 10px}
+.pr>p{max-width:820px}
+.stages{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+.stage{background:var(--cream);padding:22px;border-bottom:4px solid var(--mint)}
+.stage:nth-child(2){border-color:var(--pink)}.stage:nth-child(3){border-color:var(--yellow)}
+.stage small{display:block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin-bottom:4px}
+.stage h4{font-size:19px;margin-bottom:8px}
+.stage li,.law li{font-size:15px}
+.law{margin-top:22px;background:var(--pm);padding:24px 26px}
+.law h4{font-size:19px;margin-bottom:10px}
+.law p.n{font-size:14px;color:var(--soft);margin-top:12px}
+
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:44px}
+.day{background:var(--card);padding:30px}
+.day .n{font-family:var(--display);font-size:15px;font-weight:600;color:var(--on-navy);background:var(--forest);display:inline-block;padding:6px 14px;margin-bottom:16px}
+.day:nth-child(2) .n{background:var(--navy)}
+.day:nth-child(3) .n{background:#B5476E}
+.day ul{margin-top:10px}
+.day li{font-size:15.5px}
+.mile{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:50px}
+.mile .pi{font-size:16px}
+
+.wot{display:grid;grid-template-columns:repeat(3,1fr);margin:34px 0 40px;border:1px solid var(--line)}
+.wot div{padding:22px 24px}
+.wot div:nth-child(1){background:var(--wot-a)}.wot div:nth-child(2){background:var(--wot-b)}.wot div:nth-child(3){background:var(--wot-c)}
+.wot b{display:block;font-family:var(--display);font-size:20px;font-weight:500;color:var(--forest);margin-bottom:4px}
+.arch{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.arch .c{background:var(--card);padding:24px;border-top:5px solid var(--mint)}
+.arch .c:nth-child(2){border-color:var(--pink)}.arch .c:nth-child(3){border-color:var(--yellow)}.arch .c:nth-child(4){border-color:var(--forest)}
+.arch .c h3{font-size:20px}
+.arch .c small{display:block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--soft);margin:12px 0 2px}
+.arch .c p{font-size:15px;line-height:1.55}
+
+.col{display:grid;grid-template-columns:1.5fr 1fr;gap:56px;align-items:start}
+
+.tw{overflow-x:auto;margin-top:36px}
+table{width:100%;border-collapse:collapse;background:var(--card);font-size:15.5px;min-width:560px}
+th{background:var(--forest);color:var(--on-navy);text-align:left;font-weight:500;padding:14px 16px;font-size:14px;letter-spacing:.04em}
+td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{font-family:var(--display);font-size:17px;color:var(--forest);font-weight:500;width:22%}
+
+.proof{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:38px}
+.pc{background:var(--card);padding:28px 30px;border-top:4px solid var(--forest)}
+.pc .t{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.pc h3{margin:6px 0 10px}
+.pc p{font-size:15.5px}
+.pc .r{margin-top:12px;font-weight:500;color:var(--forest)}
+
+.links{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:38px}
+.lk{display:block;text-decoration:none;color:var(--ink);background:var(--card);padding:28px;border:1px solid var(--line);transition:transform .2s,box-shadow .2s}
+.lk:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(18,40,76,.12)}
+.lk h3{font-size:20px}
+.lk p{font-size:15px}
+.lk span{display:inline-block;margin-top:14px;font-weight:500;color:var(--forest);border-bottom:2px solid var(--pink)}
+
+.close{background:var(--forest);color:var(--on-navy);text-align:center;padding-block:90px}
+.close h2{color:var(--on-navy);margin:14px auto 18px}
+.close p{color:var(--on-navy-soft);max-width:700px;margin:0 auto}
+.close .k{justify-content:center;color:var(--mint)}
+.contact{margin-top:30px;font-size:17px;color:var(--on-navy);user-select:all}
+.contact a{color:var(--on-navy)}
+footer{background:var(--foot);color:var(--foot-ink);font-size:13px;padding-block:22px;text-align:center}
+
+@media (max-width:900px){
+  section{padding-block:60px}
+  .hero .wrap,.scen,.two,.days,.proof,.links,.col,.stages,.why{grid-template-columns:1fr}
+  .stats,.arch,.mile,.pgrid,.sits,.how{grid-template-columns:1fr 1fr}
+  .wot{grid-template-columns:1fr}
+  .photo .ring{width:260px;height:260px}
+  .photo .pi{right:0}
+  .pr{padding:24px 20px}
+}
+@media (max-width:520px){
+  .stats,.arch,.mile,.pgrid,.sits,.how{grid-template-columns:1fr}
+  .pi{transform:none}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.lk{transition:none}}
+</style>
+</head>
+<body>
+
+
+<div class="brand"><div class="wrap"><div class="mark"><i><span></span><span></span><span></span></i>The Influence Lab</div><small>People development and leadership consultancy</small></div></div>
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <div class="k">A People Development Playbook</div>
+      <h1>How we would build lasting people development at Silverstone</h1>
+      <p class="sub">An approach to your brief, from scoping through to handover. Where we would start, what we would prioritise, and how we upskill your internal team and champions so it scales once the engagement ends.</p>
+      <div class="partner"><span class="c">For Team Silverstone</span><span>Prepared by The Influence Lab</span></div>
+      <p class="me">Kay Littlehales<small>Management, Sales, Leadership and Interpersonal Communication Consulting · Author of Modern Learning · Global Guest Speaker</small></p>
+    </div>
+    <div class="photo">
+      <div class="ring"><img src="data:image/jpeg;base64,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" alt="Kay Littlehales"></div>
+      <div class="pi y r2"><b>My mantra</b>Do what is right, not what is easy.</div>
+    </div>
+  </div>
+  <div class="grid-line" role="presentation"></div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="k">The scenario</div>
+    <h2>British Grand Prix week</h2>
+    <div class="scen">
+      <div class="box">
+        <p>Half a million fans come through the gates. A permanent team of 356 leads casual teams and 594 volunteer Race Makers. Managers promoted in the spring are leading people they met that week, and senior managers are making commercial decisions in real time.</p>
+        <p>What happens next depends on how those managers were developed, how clearly they think under pressure, and whether the learning behind them joins up. That is what this playbook is for.</p>
+      </div>
+      <div class="notes">
+        <div class="pi p r1"><b>The real test</b>Learning shows up on event day, not in the training room.</div>
+        <div class="pi m r2"><b>Where we start</b>Scoping and observation, before any training request.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="k">What we understand about Silverstone</div>
+    <h2>A year round destination that has grown its team by half in a year</h2>
+    <div class="stats">
+      <div class="stat"><b>2m+</b><span>people through the gates each year</span></div>
+      <div class="stat"><b>356</b><span>permanent team members, up from 237 a year earlier</span></div>
+      <div class="stat"><b>594</b><span>volunteer Race Makers supporting events</span></div>
+      <div class="stat"><b>308</b><span>corporate events, plus around 40 track events, in 2025</span></div>
+    </div>
+    <div class="two">
+      <div>
+        <h3>What this tells us</h3>
+        <ul class="d">
+          <li>Growth of that pace creates a lot of new and first time managers, quickly. The management pathway is the right first priority.</li>
+          <li>Managers lead a mix of permanent, casual and volunteer teams across Business Support, Commercial, Drive, Escapade, Events, Karting and Operations. One programme has to work for all of them.</li>
+          <li>The calendar runs 364 days a year with four major events. Learning has to fit around the calendar, not compete with it.</li>
+          <li>There is already plenty to build on: an internal L&amp;D Partner, Changing Lanes, Early Careers, Team Member of the Month and a strong record of Race Maker training.</li>
+          <li>Your sustainability reporting names responsibility, innovation, collaboration and stewardship. Development should sound like Silverstone, not like a bought in course.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>What you have asked for</h3>
+        <ul class="d">
+          <li>A management training strategy from first time manager to strategic and commercial awareness, including employment law changes.</li>
+          <li>AI skills and capability across the business.</li>
+          <li>Your learning platforms and tools brought into one joined up ecosystem.</li>
+          <li>Repeatable, scalable initiatives your team can take forward long after the engagement ends.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="k">How we work</div>
+    <h2>Successful because of method and approach</h2>
+    <p class="lead">All of the success of this work comes from the strong, genuine relationships we build, whether that is with the CEO, managers, leaders or teams. Everything is wrapped in adult learning theory, used practically: adults commit to what they have helped shape, can relate to their own role and can apply the next day.</p>
+    <div class="pgrid">
+      <div class="pi y r1"><b>Scope first</b>Find the root cause before anything is designed. The starting point decides the success.</div>
+      <div class="pi m r2"><b>Priorities that matter</b>Not traditional theory that never converts into profit or high performance.</div>
+      <div class="pi p r3"><b>Behaviour and habits</b>We look at what people do on the day, and what holds talent back.</div>
+      <div class="pi b r2"><b>Positive challenge</b>Enjoyable and memorable, but more importantly stretching, in a psychologically safe space.</div>
+      <div class="pi y r3"><b>Co design</b>Built with the people who know the work, so the solution is collective and it belongs to Silverstone.</div>
+      <div class="pi m r1"><b>Upskilling your people</b>Internal trainers, managers and champions are developed alongside every piece, so your team can run it without us.</div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="k">Step one · Successful scoping</div>
+    <h2>SEEN: our bespoke scoping, skills scan and TNA</h2>
+    <p class="lead">Nothing is designed until we understand what is really happening. Scoping typically takes the first thirty days and runs alongside your L&amp;D Partner from the first conversation.</p>
+    <div class="sits">
+      <div><span>1</span><h4>Listen</h4><p>Conversations with the executive team, the People team, your L&amp;D Partner and the head of each department. What does good management look like here, and where does it break down?</p></div>
+      <div><span>2</span><h4>Observe</h4><p>Time on site on an event day and on a quiet day. How managers brief, decide and lead when it is busy tells us more than any survey.</p></div>
+      <div><span>3</span><h4>Skills scan and TNA</h4><p>A short skills scan for managers at every level, with personalised diagnostics that show the gaps and the strengths already in the business.</p></div>
+      <div><span>4</span><h4>Tools review</h4><p>Every learning platform and tool listed in one place: who uses it, what it costs, where it overlaps and what is missing.</p></div>
+      <div><span>5</span><h4>Blueprint</h4><p>Root causes, priorities and measures on a single page, agreed with stakeholders before any design begins.</p></div>
+    </div>
+    <div class="why">
+      <h3>Why this works</h3>
+      <p>The business invests only where it matters. Managers recognise their own world in the findings, so they commit to the change. And because the measures are agreed before design, everyone knows what success looks like. That is what creates lasting change.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="k">Step two · The priorities</div>
+    <h2>Four priorities, built in the order that makes each one easier</h2>
+    <p class="lead">These follow your brief. The detail will be shaped by what scoping finds, so this is the starting blueprint, not the finished design.</p>
+    <div class="prio">
+
+      <div class="pr">
+        <div class="t">Priority one</div>
+        <h3>One management pathway, from first team to commercial leader</h3>
+        <p>Three connected stages with the same language running through them, so a manager can see where they are and what comes next. Each stage is a blend of short face to face sessions, micro learning, guest speakers, practice on real Silverstone situations and coaching back on the job.</p>
+        <div class="stages">
+          <div class="stage"><small>Stage one</small><h4>New Manager Essentials</h4>
+            <ul class="d"><li>Moving from team member to manager</li><li>Setting expectations and everyday conversations</li><li>Leading casual, seasonal and volunteer teams</li><li>Staying clear headed on event days</li><li>Employment law essentials</li></ul></div>
+          <div class="stage"><small>Stage two</small><h4>Established managers</h4>
+            <ul class="d"><li>Coaching for Success and a feedback culture</li><li>Probation and performance conversations</li><li>Leading across generations</li><li>Planning and prioritising around the calendar</li><li>Mentoring new managers</li></ul></div>
+          <div class="stage"><small>Stage three</small><h4>Strategic and commercial leaders</h4>
+            <ul class="d"><li>Commercial awareness across events, experiences and hospitality</li><li>Decisions made with data</li><li>Leading change and growth</li><li>Identity as a leader</li><li>Influencing at executive level</li></ul></div>
+        </div>
+        <div class="law">
+          <h4>Employment law changes, built in at every stage</h4>
+          <ul class="d">
+            <li><b>Day one rights.</b> Paternity and unpaid parental leave from the first day, and sick pay from the first day of illness. Managers need to handle these conversations well from week one.</li>
+            <li><b>Preventing harassment.</b> A stronger duty to take all reasonable steps, including harassment by customers and guests. For a venue welcoming two million people a year, this is a daily management skill.</li>
+            <li><b>Dismissal protection after six months.</b> Expected from January 2027. Probation, early feedback and good records matter far more than before.</li>
+            <li><b>Zero and low hours contracts.</b> Guaranteed hours offers, reasonable notice of shifts and payment for cancelled shifts are expected during 2027. Directly relevant to anyone leading casual teams.</li>
+            <li><b>Flexible working and bereavement leave.</b> New processes expected during 2027 that every manager will need to follow with confidence.</li>
+          </ul>
+          <p class="n">We design how managers learn and practise this, through real scenarios. The legal content itself is agreed with your People team and legal advisers, and every date is checked against the government timetable before delivery.</p>
+        </div>
+      </div>
+
+      <div class="pr">
+        <div class="t">Priority two</div>
+        <h3>AI skills and capability: build with AI, design by human</h3>
+        <p>We are a team of AI and human first design experts. We build in a modern, effective and human centred way, and we upskill internal teams to do the same. People are encouraged to think first, then use AI at the right time and in the right place.</p>
+        <div class="stages">
+          <div class="stage"><small>Level one</small><h4>AI confidence for everyone</h4>
+            <ul class="d"><li>What it is good at and where it gets things wrong</li><li>Safe and ethical use, with clear guardrails</li><li>Everyday prompts that save real time</li></ul></div>
+          <div class="stage"><small>Level two</small><h4>AI in your role</h4>
+            <ul class="d"><li>Use cases chosen by each department</li><li>Practised on real work, such as event planning, customer responses and reporting</li><li>Managers leading teams that use AI well</li></ul></div>
+          <div class="stage"><small>Level three</small><h4>Builders</h4>
+            <ul class="d"><li>Teams building their own agents and tools</li><li>Standards agreed with IT and the People team</li><li>A shared library so good ideas spread</li></ul></div>
+        </div>
+      </div>
+
+      <div class="pr">
+        <div class="t">Priority three</div>
+        <h3>A joined up learning ecosystem</h3>
+        <p>The tools review from scoping becomes a clear recommendation: what to keep, what to combine and what to retire. The aim is one front door for learning, so a manager can find what they need in a minute.</p>
+        <ul class="d" style="margin-top:14px">
+          <li>One map of every platform, tool and programme, with usage and cost.</li>
+          <li>The management pathway, AI learning, compliance, Changing Lanes, Early Careers and Race Maker training connected, not sitting apart.</li>
+          <li>Simple ownership: who updates what, and how new content is added.</li>
+          <li>Data your L&amp;D Partner can pull without a specialist, so progress is visible to the business.</li>
+        </ul>
+      </div>
+
+      <div class="pr">
+        <div class="t">Priority four</div>
+        <h3>Built to last after we leave</h3>
+        <p>We upskill internally, so delivery becomes more profitable and more autonomous for your teams. The measure of success is how little you need us at the end.</p>
+        <ul class="d" style="margin-top:14px">
+          <li><b>Train the Trainer.</b> Internal facilitators learn the principles behind every session, not just the slides. It can run alongside a proof of concept.</li>
+          <li><b>Facilitator playbooks.</b> Every module handed over with session plans, scenarios and guidance, ready to repeat.</li>
+          <li><b>Coaching for Success.</b> A coaching and feedback culture, so managers keep the new habits alive in everyday conversations.</li>
+          <li><b>A skills matrix.</b> A simple tool for managers to coach alongside, showing progress by person and by team.</li>
+          <li><b>Learning champions.</b> One in every department, keeping learning alive between sessions and feeding back what works.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="k">How people will learn</div>
+    <h2>Short, varied and built around the working day</h2>
+    <p class="lead">Nobody at Silverstone has spare days to sit in a classroom. The learning is designed in small pieces that fit around the calendar, and it upskills your internal team at the same time.</p>
+    <div class="how">
+      <div><h3>Micro learning</h3><p>Short, focused pieces of ten to fifteen minutes, on one skill at a time. Easy to fit in before a shift, and easy to return to when it is needed.</p></div>
+      <div><h3>Guest speakers</h3><p>Voices from inside and outside the business who have led through pressure, growth and change. They bring the stretch and make the learning memorable.</p></div>
+      <div><h3>Workshops and practice</h3><p>Interactive sessions on real Silverstone situations, with diagnostics, scenarios and positive challenge in a psychologically safe space.</p></div>
+      <div><h3>Internal trainers and champions</h3><p>Your own people are upskilled to deliver, coach and champion the learning in every department. This is how it becomes yours.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="k">Step three · Building it to scale</div>
+    <h2>A typical first 90 days: scope, design, pilot</h2>
+    <p class="lead">Everything is proved small before it is rolled out, and timed around your major events so learning never lands in a peak week.</p>
+    <p class="typ"><b>A typical example.</b> Timescales differ depending on budget and how urgent each priority is. The real plan is agreed with you once scoping is complete.</p>
+    <div class="days">
+      <div class="day"><div class="n">Days 1 to 30 · Scope</div><h3>Understand the business</h3>
+        <ul class="d"><li>Run SEEN with your L&amp;D Partner.</li><li>Meet stakeholders in every department.</li><li>Baseline the data you already track.</li><li>Review the platforms and tools.</li></ul></div>
+      <div class="day"><div class="n">Days 31 to 60 · Design</div><h3>Agree the blueprint</h3>
+        <ul class="d"><li>Share findings and priorities.</li><li>Agree measures before design begins.</li><li>Co design stage one of the pathway and the first AI sessions.</li><li>Recommend the shape of the ecosystem.</li></ul></div>
+      <div class="day"><div class="n">Days 61 to 90 · Pilot</div><h3>Prove it small</h3>
+        <ul class="d"><li>Proof of concept with one cohort of managers from mixed departments.</li><li>Start Train the Trainer alongside it.</li><li>Measure, listen and refine.</li><li>Set the rollout plan around the event calendar.</li></ul></div>
+    </div>
+    <div class="mile">
+      <div class="pi y r1"><b>Around 30 days</b>Root causes found, baseline set, findings shared.</div>
+      <div class="pi p r2"><b>Around 60 days</b>Blueprint agreed, measures signed off, pilot designed.</div>
+      <div class="pi m r3"><b>Around 90 days</b>Pilot live, internal facilitators in training.</div>
+      <div class="pi b r2"><b>Handover</b>Your team running the pathway, with playbooks, data and champions in place.</div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="k">Behaviour and habits</div>
+    <h2>Clear thinking under pressure is a skill, and it can be developed</h2>
+    <p class="lead">Event days keep people at the edge of their Window of Tolerance. Outside it, judgement, tone and accuracy drop. Our Self Regulation framework gives managers a shared language and a practical way back, always tied to a behaviour and an outcome.</p>
+    <div class="wot">
+      <div><b>Above the window</b>Rushing, snapping, missing details when the gates open.</div>
+      <div><b>Inside the window</b>Calm, accurate and clear with teams and guests.</div>
+      <div><b>Below the window</b>Switching off, going quiet, waiting for someone else to act.</div>
+    </div>
+    <div class="arch">
+      <div class="c"><h3>The Navigator</h3><p>Momentum and quick decisions.</p><small>Under pressure</small><p>Decides fast and skips the final check.</p><small>The outcome we want</small><p>Pause, confirm, then act. Fewer errors on the day.</p></div>
+      <div class="c"><h3>The Anchor</h3><p>Steady and reliable.</p><small>Under pressure</small><p>Holds back a problem rather than raising it.</p><small>The outcome we want</small><p>Speaks up early, so issues are escalated in time.</p></div>
+      <div class="c"><h3>The Architect</h3><p>Clarity and structure.</p><small>Under pressure</small><p>Waits for more information before deciding.</p><small>The outcome we want</small><p>Decides with enough, not everything.</p></div>
+      <div class="c"><h3>The Connector</h3><p>Warmth with people.</p><small>Under pressure</small><p>Absorbs every guest's frustration.</p><small>The outcome we want</small><p>Warm with boundaries. Steady service and better wellbeing.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="k">Learning as a collective</div>
+    <h2>Learning is not the sole responsibility of L&amp;D</h2>
+    <div class="col">
+      <div>
+        <p class="lead">In Modern Learning, Kay explores why learning needs collective support. It is why we co design with the business, so the changes carry the right internal voice and blueprint.</p>
+        <ul class="d" style="margin-top:22px">
+          <li><b>Multiple generations at one table.</b> Experienced managers and first time managers learn together, so knowledge and fresh thinking cross pollinate.</li>
+          <li><b>Mentors in the room.</b> People who have led through a Grand Prix weekend share how they handled it and coach in the moment.</li>
+          <li><b>Across departments.</b> Building on Changing Lanes, managers from Events, Escapade, Karting and Commercial solve the same problems together.</li>
+          <li><b>Shared ownership.</b> Leaders, mentors and champions own the outcomes alongside your L&amp;D Partner. That is how learning sticks.</li>
+          <li><b>Strong relationships.</b> Working this way builds trust across departments and levels, and those relationships carry the work long after the programme.</li>
+        </ul>
+      </div>
+      <div class="notes">
+        <div class="pi y r2"><b>In the room</b>A manager who ran last year's Festival teaches it better than any slide.</div>
+        <div class="pi m r1"><b>Cross pollinate</b>What works in Karting can help Events tomorrow.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="k">Measuring success</div>
+    <h2>How we would know it is working</h2>
+    <p class="lead">Every programme starts with a baseline and measures agreed with stakeholders. Results are reported in the terms the business already uses.</p>
+    <div class="tw"><table>
+      <tr><th>Level</th><th>What we measure</th><th>Silverstone example</th></tr>
+      <tr><td>Engagement</td><td>Attendance, completion and how relevant people found it</td><td>Manager feedback after every module, by department</td></tr>
+      <tr><td>Learning</td><td>Confidence and capability before and after</td><td>Skills scan repeated at the end of each stage</td></tr>
+      <tr><td>Behaviour</td><td>What changes on the job</td><td>Coaching conversations held, probation reviews completed on time, issues raised early on event days</td></tr>
+      <tr><td>Business impact</td><td>The numbers the business already tracks</td><td>Retention of new managers and their teams, guest feedback, time saved through AI</td></tr>
+      <tr><td>Independence</td><td>How much your team runs without us</td><td>Sessions delivered by internal facilitators, tools retired, one front door in use</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="k">Proof</div>
+    <h2>Where this has been done before</h2>
+    <div class="proof">
+      <div class="pc"><div class="t">Commify · 2024 to 2026</div><h3>Manager Essentials across 22 countries</h3><p>A twelve month, CPD approved academy for over 400 managers, with leadership, mentorship and sales methodology alongside it. Scoped first, piloted before rollout, and handed to ten recertified facilitators.</p><p class="r">12% sales uplift within twelve months. £500k saved on people development. 38% less design time through AI first, human centred design.</p></div>
+      <div class="pc"><div class="t">Royal Mail · 2016 to 2022</div><h3>The UK's largest transformation programme</h3><p>Led Enhanced Capability Management for over 1,000 managers across a national directorate, from proof of concept to national rollout, working with trade unions so change landed collaboratively.</p><p class="r">23% drop in new team leader attrition. Productivity up by at least 10%.</p></div>
+      <div class="pc"><div class="t">Genius People · 2022 to 2024</div><h3>Leadership pathways from Level 3 to 7</h3><p>Led CMI leadership and coaching programmes at every level, mapped to knowledge, skills and behaviours, with operational excellence and commercial acumen at the senior levels.</p><p class="r">High distinction rates, and a strong Ofsted outcome.</p></div>
+      <div class="pc"><div class="t">Sport, events and hospitality</div><h3>Audiences that expect the best</h3><p>Leadership and facilitation work with Manchester City Football Group and with LQA, the luxury hospitality quality assurance business, alongside BT, the NHS, Channel 4 and Manchester Metropolitan University.</p><p class="r">A credible facilitator who engages every audience.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="k">Tools you can try</div>
+    <h2>Our diagnostics and resources</h2>
+    <p class="lead">We build our own diagnostics, so people see their archetype and leaders see the data. These are live now.</p>
+    <div class="links">
+      <a class="lk" href="https://the-influencelab.github.io/Group-Masterclass-Self-Reg/" target="_blank" rel="noopener"><h3>Self Regulation Diagnostic</h3><p>Find your archetype and how you leave, and return to, your Window of Tolerance.</p><span>Take the diagnostic</span></a>
+      <a class="lk" href="https://the-influencelab.github.io/self-regulation-playbook/" target="_blank" rel="noopener"><h3>Self Regulation Playbook</h3><p>The practical tools behind each archetype, with behaviours and outcomes.</p><span>Open the playbook</span></a>
+      <a class="lk" href="https://the-influencelab.github.io/Modern-L-D-Diagnostic-2026/" target="_blank" rel="noopener"><h3>Modern Learning Diagnostic</h3><p>The Drift to Drive Diagnostic, built on the principles in Modern Learning.</p><span>Explore modern learning</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="close">
+  <div class="wrap">
+    <div class="k">Thank you</div>
+    <h2>The next step is a scoping conversation</h2>
+    <p>An hour with your L&amp;D Partner would be enough to test this approach against what you already know, and to agree where scoping should begin.</p>
+    <p class="contact">Kay Littlehales · InfluenceL8b@outlook.com · 07986 641378 · <a href="https://www.linkedin.com/in/kay-littlehales-minstsmm-2a434117/" target="_blank" rel="noopener">LinkedIn</a></p>
+    <div class="mark"><i><span></span><span></span><span></span></i>The Influence Lab</div>
+  </div>
+</section>
+<footer><div class="wrap">© 2026 The Influence Lab. Frameworks, diagnostics and archetypes are the intellectual property of The Influence Lab. An independent proposal, not a Silverstone publication. Silverstone facts from Silverstone Careers and the Silverstone Sustainability Report 2026. Employment law dates from the published 2026 implementation timetable and subject to change.</div></footer>
+
+</body>
+</html>
